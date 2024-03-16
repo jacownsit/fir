@@ -15,11 +15,31 @@ def crown_level(symbol, number, count):
 def framing(string, symbol, symbol_count):
     frame = symbol_sequence(symbol,symbol_count)
     return frame + string + frame
-def crown(season_first_letter, level_count):
+    
+def new_year_crown(season_first_letter, level_count):
     for level_counter in range(level_count):
         string = crown_level(season_first_letter, level_counter + 1, level_count)
         string = framing(string, " ",int(level_count / 2)) 
-        print(string)
+        h = ' '
+        for i in range(1,len(string)):
+            if i % 2 == 0 and h[i-1] != ' ':
+                h = h + '*'
+            else:
+                h = h + string[i]
+        print(h)
+        level_counter += 1
+        
+def crown(season_first_letter, level_count):
+    for level_counter in range(level_count):
+        string = crown_level(season_first_letter, level_counter + 1, level_count)
+        string = framing(string, " ",int(level_count / 2))
+        h = ''
+        for i in range(len(string)):
+            if h % 2 == 0:
+                h = h + '*'
+            else:
+                h = h + string[i]
+        print(h)
         level_counter += 1
 def summer_crown(level_count):
     crown('L', level_count)
@@ -28,7 +48,7 @@ def autumn_crown(level_count):
     crown('O', level_count)
 
 def winter_crown(level_count):
-    crown('3', level_count)
+    new_year_crown('3', level_count)
     
 def spring_crown(level_count):
     crown('B', level_count)
